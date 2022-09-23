@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const axiosApiInstance = axios.create({
-    baseURL: `http://localhost:3001/api/v0/`
-})
+const axiosInstance = axios.create();
 
-axiosApiInstance.interceptors.request.use(
+axiosInstance.interceptors.request.use(
     (request) => {
         const token = localStorage.getItem("token");
         if (token)
@@ -13,7 +11,9 @@ axiosApiInstance.interceptors.request.use(
             }
         return request;
     },
-    error => Promise.reject(error)
-)
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
-export default axiosApiInstance;
+export default axiosInstance;
