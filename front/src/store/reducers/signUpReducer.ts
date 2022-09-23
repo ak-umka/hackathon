@@ -1,4 +1,4 @@
-import { SET_SIGN_UP_SUCCESSFUL, SET_SIGN_UP_FAILED, SET_SIGN_IN_LOADING } from "../actionTypes";
+import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT } from "../actionTypes";
 import { AuthState } from "../types";
 
 const initialState: AuthState = {
@@ -8,9 +8,9 @@ const initialState: AuthState = {
     loggedIn: false
 }
 
-const signUpReducer = (state: AuthState = initialState, action: any): AuthState => {
+const authReducer = (state: AuthState = initialState, action: any): AuthState => {
     switch (action.type) {
-        case SET_SIGN_IN_LOADING:
+        case SET_LOADING:
             return {
                 ...state,
                 pending: true
@@ -19,16 +19,27 @@ const signUpReducer = (state: AuthState = initialState, action: any): AuthState 
             return {
                 ...state,
                 user: action.payload,
-                loggedIn: true
             }
-        case SET_SIGN_UP_FAILED:
+        case SET_AUTH_FAILED:
             return {
                 ...state,
                 error: action.payload
+            }
+        case SET_SIGN_IN_SUCCESSFUL:
+            return {
+                ...state,
+                user: action.payload,
+                loggedIn: true
+            }
+        case SET_LOGOUT:
+            return {
+                ...state,
+                loggedIn: false,
+                user: []
             }
         default:
             return { ...state, pending: false };
     }
 }
 
-export default signUpReducer;
+export default authReducer;
