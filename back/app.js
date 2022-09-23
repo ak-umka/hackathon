@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import router from './router/auth-route.js';
+import schoolRouter from './router/school-route.js';
 import errorMiddleware from './middlewares/error-middlewares.js';
 
 dotenv.config();
@@ -15,8 +16,10 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use('/api/v0', router);
 app.use(errorMiddleware);
+
+app.use('/images', express.static('images'));
+app.use('/api/v0', router, schoolRouter);
 
 const start = async () => {
   try {
