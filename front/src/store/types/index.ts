@@ -1,4 +1,4 @@
-import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT } from "../actionTypes";
+import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT, SET_REFRESH } from "../actionTypes";
 
 export interface UserSuccessSignUp {
     type: typeof SET_SIGN_UP_SUCCESSFUL,
@@ -13,6 +13,15 @@ export interface UserLogout {
     type: typeof SET_LOGOUT,
     payload: {
         acknowledged: boolean,
+    }
+}
+
+export interface UserTokenRefresh {
+    type: typeof SET_REFRESH,
+    payload: {
+        user: UserInfo[],
+        accessToken: string,
+        refreshToken: string
     }
 }
 
@@ -47,4 +56,4 @@ export interface AuthState {
     loggedIn: boolean
 }
 
-export type AuthTypes = UserLoading | UserLogout | UserSuccessSignUp | UserSuccessSignIn | UserFailed;
+export type AuthTypes = UserLoading | UserLogout | UserTokenRefresh | UserSuccessSignUp | UserSuccessSignIn | UserFailed;
