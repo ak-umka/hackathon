@@ -1,4 +1,4 @@
-import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT } from "../actionTypes";
+import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT, SET_REFRESH } from "../actionTypes";
 import { AuthState } from "../types";
 
 const initialState: AuthState = {
@@ -36,6 +36,11 @@ const authReducer = (state: AuthState = initialState, action: any): AuthState =>
                 ...state,
                 loggedIn: false,
                 user: []
+            }
+        case SET_REFRESH:
+            return {
+                ...state,
+                user: action.payload
             }
         default:
             return { ...state, pending: false };

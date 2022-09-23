@@ -1,4 +1,14 @@
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../store/action/authAction'
+
 function Home() {
-  return <div></div>
+  const dispatch = useDispatch()
+
+  return (
+    <div>
+      <button onClick={() => dispatch<any>(logout())}>Log out</button>
+    </div>
+  )
 }
 export default Home

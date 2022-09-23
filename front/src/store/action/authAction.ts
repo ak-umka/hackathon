@@ -1,4 +1,4 @@
-import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT } from "../actionTypes";
+import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT, SET_REFRESH } from "../actionTypes";
 import axiosInstance from "../server";
 import { Dispatch } from "redux";
 import { AuthTypes, UserInfo } from "../types";
@@ -74,6 +74,24 @@ export const logout = () => async (dispatch: Dispatch<AuthTypes>) => {
         })
 
     } catch (error) {
+        dispatch({
+            type: SET_AUTH_FAILED
+        })
+    }
+}
+
+export const refresh = () => async (dispatch: Dispatch<AuthTypes>) => {
+    try {
+        dispatch({
+            type: SET_LOADING,
+        })
+        const res = await axiosInstance.get("http://localhost:3001/api/v0/refresh")
+        dispatch({
+            type: SET_REFRESH,
+            payload: res.data
+        })
+    }
+    catch (error) {
         dispatch({
             type: SET_AUTH_FAILED
         })
