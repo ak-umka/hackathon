@@ -16,23 +16,39 @@ class RatingController {
         comment: req.body.comment,
         userId: req.user
       });
-      console.log(review);
       await review.save();
-      const school = await School.findById(req.params.id);
-      school.ratings.push(review);
+      const school = await School.findById(req.params.id).populate({
+        path: "ratings",
+        populate: {
+          path: "userId",
+          select: "email"
+        }
+      });
+      // if user already rated this school - update rating
+      const rating = school.ratings.find(rating => rating.userId._id.toString() === req.user.toString());
+      if (rating) {
+        rating.rating = req.body.rating;
+        rating.comment = req.body.comment;
+        await rating.save();
+      } else {
+        school.ratings.push(review);
+      }
       await school.save();
-      return res.json(school);
+      return res.status(201).json(school);
     } catch (error) {
       next(error);
     }
   }
   async getRatings(req, res, next) {
     try {
-      const ratings = await ratingModel.find().populate({
-        path: "userId",
-        select: "email"
+      const school = await School.findById(req.params.id).populate({
+        path: "ratings",
+        populate: {
+          path: "userId",
+          select: "email"
+        }
       });
-      return res.json(ratings);
+      return res.json(school.ratings);
     } catch (error) {
       next(error);
     }
