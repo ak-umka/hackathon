@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 import router from './router/auth-route.js';
 import schoolRouter from './router/school-route.js';
+import ratingRouter from './router/rating-route.js';
 import errorMiddleware from './middlewares/error-middlewares.js';
 
 dotenv.config();
@@ -19,7 +20,7 @@ app.use(cookieParser());
 app.use(errorMiddleware);
 
 app.use('/images', express.static('images'));
-app.use('/api/v0', router, schoolRouter);
+app.use('/api/v0', router, schoolRouter, ratingRouter);
 
 const start = async () => {
   try {
