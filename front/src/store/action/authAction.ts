@@ -1,7 +1,7 @@
 import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT, SET_REFRESH } from "../actionTypes";
 import axiosInstance from "../server";
 import { Dispatch } from "redux";
-import { AuthTypes, UserInfo } from "../types";
+import { Types, UserInfo } from "../types";
 import axios from "axios";
 import { saveTokenInLocalStorage } from "../services"
 
@@ -15,7 +15,7 @@ type Logout = {
     acknowledged: boolean,
 }
 
-export const signup = (option: any) => async (dispatch: Dispatch<AuthTypes>) => {
+export const signup = (option: any) => async (dispatch: Dispatch<Types>) => {
     try {
         dispatch({
             type: SET_LOADING,
@@ -40,7 +40,7 @@ export const signup = (option: any) => async (dispatch: Dispatch<AuthTypes>) => 
     }
 }
 
-export const signin = (option: any) => async (dispatch: Dispatch<AuthTypes>) => {
+export const signin = (option: any) => async (dispatch: Dispatch<Types>) => {
     try {
         dispatch({
             type: SET_LOADING,
@@ -60,7 +60,7 @@ export const signin = (option: any) => async (dispatch: Dispatch<AuthTypes>) => 
     }
 }
 
-export const logout = () => async (dispatch: Dispatch<AuthTypes>) => {
+export const logout = () => async (dispatch: Dispatch<Types>) => {
     try {
         dispatch({
             type: SET_LOADING,
@@ -80,7 +80,7 @@ export const logout = () => async (dispatch: Dispatch<AuthTypes>) => {
     }
 }
 
-export const refresh = () => async (dispatch: Dispatch<AuthTypes>) => {
+export const refresh = () => async (dispatch: Dispatch<Types>) => {
     try {
         dispatch({
             type: SET_LOADING,
