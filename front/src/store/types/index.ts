@@ -1,4 +1,4 @@
-import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT, SET_REFRESH, SET_SCHOOL_INFO_SUCCESSFUL, SET_SCHOOL_INFO_FAILED, SET_RATING_SUCCESSFUL, SET_RATING_FAILED } from "../actionTypes";
+import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT, SET_REFRESH, SET_SCHOOL_INFO_SUCCESSFUL, SET_SCHOOL_INFO_FAILED, SET_RATING_SUCCESSFUL, SET_RATING_FAILED, SET_LIBRARY_SUCCESSFUL, SET_LIBRARY_FAILED, SET_VACANCY_SUCCESSFUL, SET_VACANCY_FAILED } from "../actionTypes";
 
 //return signed up data
 export interface UserSuccessSignUp {
@@ -60,6 +60,32 @@ export interface GetRatingSuccessful {
     payload: { rating: Rating[] }
 }
 
+//return successful library data
+export interface GetLibrarySuccessful {
+    type: typeof SET_LIBRARY_SUCCESSFUL,
+    payload: {
+        name: string,
+        author: string,
+        description: string,
+        genre: string,
+        book: string,
+        id: string,
+    }
+}
+
+//return successful vacancy data
+export interface GetVacancySuccessful {
+    type: typeof SET_VACANCY_SUCCESSFUL,
+    payload: {
+        title: string,
+        description: string,
+        salary: string,
+        email: string,
+        phone: string,
+        id: string,
+    }
+}
+
 //return loading
 export interface UserLoading {
     type: typeof SET_LOADING
@@ -78,6 +104,16 @@ export interface GetSchoolFailed {
 //return failed rating data
 export interface GetRatingFailed {
     type: typeof SET_RATING_FAILED
+}
+
+//return failed library data
+export interface GetLibraryFailed {
+    type: typeof SET_LIBRARY_FAILED
+}
+
+//return failed vacancy data
+export interface GetVacancyFailed {
+    type: typeof SET_VACANCY_FAILED
 }
 
 export type UserInfo = {
@@ -121,4 +157,14 @@ export interface RatingState {
     error: string | null;
 }
 
-export type Types = UserLoading | UserLogout | UserTokenRefresh | UserSuccessSignUp | UserSuccessSignIn | UserFailed | GetSchoolFailed | GetSchoolSuccessful | GetRatingFailed | GetRatingSuccessful;
+export interface LibraryState {
+    books: [];
+    error: string | null;
+}
+
+export interface VacancyState {
+    vacancy: [];
+    error: string | null;
+}
+
+export type Types = UserLoading | UserLogout | UserTokenRefresh | UserSuccessSignUp | UserSuccessSignIn | UserFailed | GetSchoolFailed | GetSchoolSuccessful | GetRatingFailed | GetRatingSuccessful | GetLibrarySuccessful | GetLibraryFailed | GetVacancyFailed | GetVacancySuccessful;
