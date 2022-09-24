@@ -27,10 +27,12 @@ const schoolSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  countClasses: {
-    type: Number,
-    required: true,
-  },
+  groups: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Group",
+    },
+  ],
   ratings: [
     {
       type: mongoose.Schema.Types.ObjectId,
