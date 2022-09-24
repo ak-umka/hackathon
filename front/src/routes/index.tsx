@@ -1,7 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, School } from "../Pages";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Home, School } from '../Pages'
 
 const MyRoutes = () => {
+  // const isAuthenticated = useSelector((state: RootState) => state.auth)
   return (
     <div>
       <BrowserRouter>
@@ -11,7 +12,7 @@ const MyRoutes = () => {
         </Routes>
       </BrowserRouter>
     </div>
-  );
-};
+  )
+}
 
-export default MyRoutes;
+export default MyRoutes

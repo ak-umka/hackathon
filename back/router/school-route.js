@@ -29,4 +29,6 @@ router.delete('/deleteSchool/:id', auth, SchoolControllers.deleteSchool);
 router.post('/getSchool/:id/createTeacher', auth, upload.single("image"), SchoolControllers.addTeacher);
 router.delete('/getSchool/:id/deleteTeacher/:teacherId', auth, SchoolControllers.deleteTeacher);
 
+router.get('/search/:key', SchoolControllers.searchSchools);
+
 export default router;

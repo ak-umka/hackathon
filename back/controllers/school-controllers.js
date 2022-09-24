@@ -34,7 +34,7 @@ class SchoolController {
           path: "userId",
           select: "email"
         }
-      });
+      }).populate("vacancies");
       return res.json(schools);
     } catch (error) {
       next(error);
@@ -49,7 +49,7 @@ class SchoolController {
           path: "userId",
           select: "email"
         }
-      });
+      }).populate("vacancies");
       return res.json(school);
     } catch (error) {
       next(error);
@@ -127,6 +127,31 @@ class SchoolController {
       await school.save();
       await Teacher.findByIdAndDelete(req.params.teacherId);
       return res.json({ message: "Teacher deleted" });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async searchSchools(req, res, next) {
+    try {
+      const schools = await School.find(
+        {
+          "$or": [
+            { "name": { "$regex": req.params.key, "$options": "i" } },
+            { "direction": { "$regex": req.params.key, "$options": "i" } },
+            // teachers is an array of teacher ids
+            { "teachers": { "$in": await Teacher.find({ "firstname": { "$regex": req.params.key, "$options": "i" } }).select("_id") } },
+            { "teachers": { "$in": await Teacher.find({ "lastname": { "$regex": req.params.key, "$options": "i" } }).select("_id") } },
+          ],
+        }
+      ).populate("teachers").populate({
+        path: "ratings",
+        populate: {
+          path: "userId",
+          select: "email"
+        }
+      });
+      return res.json(schools);
     } catch (error) {
       next(error);
     }

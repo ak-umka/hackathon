@@ -1,7 +1,7 @@
 import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT, SET_REFRESH } from "../actionTypes";
 import axiosInstance from "../server";
 import { Dispatch } from "redux";
-import { AuthTypes, UserInfo } from "../types";
+import { Types, UserInfo } from "../types";
 import axios from "axios";
 import { saveTokenInLocalStorage } from "../services"
 
@@ -15,12 +15,12 @@ type Logout = {
     acknowledged: boolean,
 }
 
-export const signup = (option: any) => async (dispatch: Dispatch<AuthTypes>) => {
+export const signup = (option: any) => async (dispatch: Dispatch<Types>) => {
     try {
         dispatch({
             type: SET_LOADING,
         })
-        const res = await axios.post<User>("http://localhost:3001/api/v0/signup", option);
+        const res = await axios.post<User>("http://localhost:3000/api/v0/signup", option);
         saveTokenInLocalStorage(res.data)
         localStorage.setItem("token", res.data.accessToken)
         dispatch({
@@ -40,12 +40,12 @@ export const signup = (option: any) => async (dispatch: Dispatch<AuthTypes>) => 
     }
 }
 
-export const signin = (option: any) => async (dispatch: Dispatch<AuthTypes>) => {
+export const signin = (option: any) => async (dispatch: Dispatch<Types>) => {
     try {
         dispatch({
             type: SET_LOADING,
         })
-        const res = await axiosInstance.post<User>("http://localhost:3001/api/v0/signin", option);
+        const res = await axiosInstance.post<User>("http://localhost:3000/api/v0/signin", option);
         saveTokenInLocalStorage(res.data);
         localStorage.setItem("token", res.data.accessToken);
         dispatch({
@@ -60,12 +60,12 @@ export const signin = (option: any) => async (dispatch: Dispatch<AuthTypes>) => 
     }
 }
 
-export const logout = () => async (dispatch: Dispatch<AuthTypes>) => {
+export const logout = () => async (dispatch: Dispatch<Types>) => {
     try {
         dispatch({
             type: SET_LOADING,
         })
-        const res = await axiosInstance.post<Logout>("http://localhost:3001/api/v0/logout");
+        const res = await axiosInstance.post<Logout>("http://localhost:3000/api/v0/logout");
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         dispatch({
@@ -80,12 +80,12 @@ export const logout = () => async (dispatch: Dispatch<AuthTypes>) => {
     }
 }
 
-export const refresh = () => async (dispatch: Dispatch<AuthTypes>) => {
+export const refresh = () => async (dispatch: Dispatch<Types>) => {
     try {
         dispatch({
             type: SET_LOADING,
         })
-        const res = await axiosInstance.get("http://localhost:3001/api/v0/refresh")
+        const res = await axiosInstance.get("http://localhost:3000/api/v0/refresh")
         dispatch({
             type: SET_REFRESH,
             payload: res.data
@@ -97,5 +97,3 @@ export const refresh = () => async (dispatch: Dispatch<AuthTypes>) => {
         })
     }
 }
-
-
