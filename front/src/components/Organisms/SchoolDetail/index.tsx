@@ -1,24 +1,24 @@
-import * as React from "react";
-import { Box, Tabs, Tab } from "@mui/material";
-import { EmployeeList, TabPanel } from "../../Molecules";
+import * as React from 'react'
+import { Box, Tabs, Tab } from '@mui/material'
+import { EmployeeList, TabPanel, Review } from '../../Molecules'
 
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
+    'aria-controls': `simple-tabpanel-${index}`,
+  }
 }
 
 function SchoolDetail() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
   return (
     <>
       <Box
-        sx={{ borderBottom: 1, borderColor: "divider", marginBottom: "48px" }}
+        sx={{ borderBottom: 1, borderColor: 'divider', marginBottom: '48px' }}
       >
         <Tabs
           value={value}
@@ -37,10 +37,10 @@ function SchoolDetail() {
         Item Two
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <Review />
       </TabPanel>
     </>
-  );
+  )
 }
 
-export default SchoolDetail;
+export default SchoolDetail
