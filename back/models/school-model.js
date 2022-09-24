@@ -36,7 +36,13 @@ const schoolSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Rating",
     },
-  ]
+  ],
+  vacancies: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Vacancy",
+    },
+  ],
 });
 
 export default mongoose.model("School", schoolSchema);

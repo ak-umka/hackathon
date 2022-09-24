@@ -34,7 +34,7 @@ class SchoolController {
           path: "userId",
           select: "email"
         }
-      });
+      }).populate("vacancies");
       return res.json(schools);
     } catch (error) {
       next(error);
@@ -49,7 +49,7 @@ class SchoolController {
           path: "userId",
           select: "email"
         }
-      });
+      }).populate("vacancies");
       return res.json(school);
     } catch (error) {
       next(error);

@@ -9,6 +9,7 @@ import router from './router/auth-route.js';
 import schoolRouter from './router/school-route.js';
 import ratingRouter from './router/rating-route.js';
 import libraryRouter from './router/library-route.js';
+import vacancyRouter from './router/vacancy-route.js';
 import errorMiddleware from './middlewares/error-middlewares.js';
 
 
@@ -24,7 +25,7 @@ app.use(errorMiddleware)
 
 
 app.use('/images', express.static('images'));
-app.use('/api/v0', router, schoolRouter, ratingRouter, libraryRouter);
+app.use('/api/v0', router, schoolRouter, ratingRouter, libraryRouter, vacancyRouter)
 
 
 const start = async () => {
