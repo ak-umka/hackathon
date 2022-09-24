@@ -15,6 +15,7 @@ function SchoolInfo() {
           borderRadius: "8px",
           boxShadow: "none",
           padding: "32px 24px",
+          marginBottom: "64px",
         }}
       >
         <Grid container spacing={4}>
