@@ -21,7 +21,7 @@ export const getSchools = () => async (dispatch: Dispatch<Types>) => {
         dispatch({
             type: SET_LOADING
         })
-        const res = await axios.get<School>("http://localhost:3001/api/v0/getSchools")
+        const res = await axios.get<School>("http://localhost:3000/api/v0/getSchools")
         dispatch({
             type: SET_SCHOOL_INFO_SUCCESSFUL,
             payload: res.data
@@ -38,7 +38,7 @@ export const getSchoolId = (id: any) => async (dispatch: Dispatch<Types>) => {
         dispatch({
             type: SET_LOADING
         })
-        const res = await axios.get<School>(`http://localhost:3001/api/v0/getSchool/${id}`)
+        const res = await axios.get<School>(`http://localhost:3000/api/v0/getSchool/${id}`)
         dispatch({
             type: SET_SCHOOL_INFO_SUCCESSFUL,
             payload: res.data
@@ -55,7 +55,7 @@ export const createSchool = (options: any) => async (dispatch: Dispatch<Types>) 
         dispatch({
             type: SET_LOADING
         })
-        const res = await axiosInstance.post<School>("http://localhost:3001/api/v0/createSchool", options)
+        const res = await axiosInstance.post<School>("http://localhost:3000/api/v0/createSchool", options)
         dispatch({
             type: SET_SCHOOL_INFO_SUCCESSFUL,
             payload: res.data
@@ -73,7 +73,7 @@ export const updateSchoolId = (id: any, options: any) => async (dispatch: Dispat
         dispatch({
             type: SET_LOADING
         })
-        const res = await axiosInstance.put<School>(`http://localhost:3001/api/v0/updateSchool/${id}`, options)
+        const res = await axiosInstance.put<School>(`http://localhost:3000/api/v0/updateSchool/${id}`, options)
         dispatch({
             type: SET_SCHOOL_INFO_SUCCESSFUL,
             payload: res.data
@@ -90,7 +90,7 @@ export const deleteSchoolId = (id: any, options: any) => async (dispatch: Dispat
         dispatch({
             type: SET_LOADING
         })
-        const res = await axiosInstance.put<School>(`http://localhost:3001/api/v0/deleteSchool/${id}`, options)
+        const res = await axiosInstance.put<School>(`http://localhost:3000/api/v0/deleteSchool/${id}`, options)
         dispatch({
             type: SET_SCHOOL_INFO_SUCCESSFUL,
             payload: res.data

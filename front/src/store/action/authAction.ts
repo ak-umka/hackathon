@@ -20,7 +20,7 @@ export const signup = (option: any) => async (dispatch: Dispatch<Types>) => {
         dispatch({
             type: SET_LOADING,
         })
-        const res = await axios.post<User>("http://localhost:3001/api/v0/signup", option);
+        const res = await axios.post<User>("http://localhost:3000/api/v0/signup", option);
         saveTokenInLocalStorage(res.data)
         localStorage.setItem("token", res.data.accessToken)
         dispatch({
@@ -45,7 +45,7 @@ export const signin = (option: any) => async (dispatch: Dispatch<Types>) => {
         dispatch({
             type: SET_LOADING,
         })
-        const res = await axiosInstance.post<User>("http://localhost:3001/api/v0/signin", option);
+        const res = await axiosInstance.post<User>("http://localhost:3000/api/v0/signin", option);
         saveTokenInLocalStorage(res.data);
         localStorage.setItem("token", res.data.accessToken);
         dispatch({
@@ -65,7 +65,7 @@ export const logout = () => async (dispatch: Dispatch<Types>) => {
         dispatch({
             type: SET_LOADING,
         })
-        const res = await axiosInstance.post<Logout>("http://localhost:3001/api/v0/logout");
+        const res = await axiosInstance.post<Logout>("http://localhost:3000/api/v0/logout");
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         dispatch({
@@ -85,7 +85,7 @@ export const refresh = () => async (dispatch: Dispatch<Types>) => {
         dispatch({
             type: SET_LOADING,
         })
-        const res = await axiosInstance.get("http://localhost:3001/api/v0/refresh")
+        const res = await axiosInstance.get("http://localhost:3000/api/v0/refresh")
         dispatch({
             type: SET_REFRESH,
             payload: res.data
