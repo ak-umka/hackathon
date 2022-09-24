@@ -1,5 +1,9 @@
 import { Container } from "@mui/material";
-import { SchoolHead, SchoolInfo } from "../../components/Organisms";
+import {
+  SchoolHead,
+  SchoolInfo,
+  SchoolDetail,
+} from "../../components/Organisms";
 
 function School() {
   return (
@@ -7,6 +11,7 @@ function School() {
       <Container fixed>
         <SchoolHead />
         <SchoolInfo />
+        <SchoolDetail />
       </Container>
     </>
   );
