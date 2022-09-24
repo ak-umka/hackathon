@@ -1,9 +1,15 @@
-import AsyncAutocomplete from './AsyncAutocomplete'
-import BasicAutocomplete from './BasicAutocomplete'
+
+import AsyncAutocomplete from "./AsyncAutocomplete";
+import BasicAutocomplete from "./BasicAutocomplete";
+import ClassList from "./ClassList";
+import EmployeeList from "./EmployeeList";
+import HowToProceed from "./HowToProceed";
+import SchoolCard from "./SchoolCard";
+import TabPanel from "./TabPanel";
+import VacancyList from "./VacancyList";
 import EmployeeList from './EmployeeList'
-import SchoolCard from './SchoolCard'
-import TabPanel from './TabPanel'
 import Review from './Review'
+
 
 export {
   AsyncAutocomplete,
@@ -11,5 +17,9 @@ export {
   BasicAutocomplete,
   TabPanel,
   EmployeeList,
+  ClassList,
+  VacancyList,
+  HowToProceed,
   Review,
-}
+};
+
