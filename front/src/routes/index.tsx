@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import {Home} from '../Pages'
 
-// import About from './components/About'
-import Home from '../components/Home'
-// import Users from './components/Users'
 
 const MyRoutes = () => {
   return (
