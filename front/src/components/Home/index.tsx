@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { styled } from '@mui/material/styles'
-import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { logout } from '../../store/action/authAction'
 import { Container, Grid, Typography } from '@mui/material'
 
 function Home() {
