@@ -28,7 +28,13 @@ class SchoolController {
 
   async getSchools(req, res, next) {
     try {
-      const schools = await School.find().populate("teachers");
+      const schools = await School.find().populate("teachers").populate({
+        path: "ratings",
+        populate: {
+          path: "userId",
+          select: "email"
+        }
+      });
       return res.json(schools);
     } catch (error) {
       next(error);
@@ -37,7 +43,13 @@ class SchoolController {
 
   async getSchool(req, res, next) {
     try {
-      const school = await School.findById(req.params.id).populate("teachers");
+      const school = await School.findById(req.params.id).populate("teachers").populate({
+        path: "ratings",
+        populate: {
+          path: "userId",
+          select: "email"
+        }
+      });
       return res.json(school);
     } catch (error) {
       next(error);
