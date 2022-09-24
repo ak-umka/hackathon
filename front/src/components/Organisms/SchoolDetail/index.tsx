@@ -1,6 +1,20 @@
 import * as React from "react";
 import { Box, Tabs, Tab } from "@mui/material";
-import { EmployeeList, TabPanel } from "../../Molecules";
+import {
+  ClassList,
+  EmployeeList,
+  HowToProceed,
+  TabPanel,
+  VacancyList,
+} from "../../Molecules";
+
+const tabList = [
+  "классы",
+  "Преподовательский состав",
+  "Отзывы",
+  "Как постпуить ?",
+  "вакансии школы",
+];
 
 function a11yProps(index: number) {
   return {
@@ -25,19 +39,22 @@ function SchoolDetail() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          {tabList.map((tab, index) => (
+            <Tab key={index} label={tab} {...a11yProps(index)} />
+          ))}
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <EmployeeList />
+        <ClassList />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <EmployeeList />
       </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
+      <TabPanel value={value} index={3}>
+        <HowToProceed />
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <VacancyList />
       </TabPanel>
     </>
   );
