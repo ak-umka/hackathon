@@ -16,19 +16,24 @@ export function runLogoutTimer(dispatch: any, timer: any) {
     }, timer);
 }
 
+type TokenExpired = {
+    expireDate: string
+}
+
 //check login
 export function checkAutoLogin(dispatch: Dispatch) {
     const tokenDetailsString = localStorage.getItem("user");
-    let tokenDetails = "";
+    // let tokenDetails: TokenExpired = "";
     if (!tokenDetailsString) {
         dispatch<any>(logout());
-        console.log("error")
         return;
     }
 
-    tokenDetails = JSON.parse(tokenDetailsString);
-    let expireDate = new Date(tokenDetails);
+    let tokenDetails: TokenExpired = JSON.parse(tokenDetailsString);
+    let expireDate = new Date(tokenDetails.expireDate);
     let todaysDate = new Date();
+
+    console.log(expireDate)
 
     if (todaysDate > expireDate) {
         dispatch<any>(refresh());

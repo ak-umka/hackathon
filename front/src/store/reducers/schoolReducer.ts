@@ -1,4 +1,4 @@
-import { SET_SCHOOL_INFO_SUCCESSFUL, SET_SCHOOL_INFO_FAILED, SET_TEACHER_INFO } from "../actionTypes";
+import { SET_SCHOOL_INFO_SUCCESSFUL, SET_SCHOOL_INFO_FAILED } from "../actionTypes";
 import { SchoolState } from "../types";
 
 const initialState: SchoolState = {

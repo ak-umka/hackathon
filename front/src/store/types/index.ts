@@ -1,5 +1,6 @@
-import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT, SET_REFRESH, SET_SCHOOL_INFO_SUCCESSFUL, SET_SCHOOL_INFO_FAILED, SET_TEACHER_INFO } from "../actionTypes";
+import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT, SET_REFRESH, SET_SCHOOL_INFO_SUCCESSFUL, SET_SCHOOL_INFO_FAILED, SET_RATING_SUCCESSFUL, SET_RATING_FAILED } from "../actionTypes";
 
+//return signed up data
 export interface UserSuccessSignUp {
     type: typeof SET_SIGN_UP_SUCCESSFUL,
     payload: {
@@ -9,6 +10,7 @@ export interface UserSuccessSignUp {
     }
 }
 
+//return user logged out
 export interface UserLogout {
     type: typeof SET_LOGOUT,
     payload: {
@@ -16,6 +18,7 @@ export interface UserLogout {
     }
 }
 
+//return user's token was refreshed
 export interface UserTokenRefresh {
     type: typeof SET_REFRESH,
     payload: {
@@ -25,6 +28,7 @@ export interface UserTokenRefresh {
     }
 }
 
+//return signed in data
 export interface UserSuccessSignIn {
     type: typeof SET_SIGN_IN_SUCCESSFUL,
     payload: {
@@ -34,6 +38,7 @@ export interface UserSuccessSignIn {
     }
 }
 
+//return successful school data
 export interface GetSchoolSuccessful {
     type: typeof SET_SCHOOL_INFO_SUCCESSFUL,
     payload: {
@@ -42,23 +47,37 @@ export interface GetSchoolSuccessful {
         address: string,
         image: string,
         shortHistory: string,
-        teachers: [],
+        teachers: Teacher[],
         direction: string,
         countClasses: number,
         rating: Rating[]
     }
 }
 
+//return successful rating data
+export interface GetRatingSuccessful {
+    type: typeof SET_RATING_SUCCESSFUL,
+    payload: { rating: Rating[] }
+}
+
+//return loading
 export interface UserLoading {
     type: typeof SET_LOADING
 }
 
+//return authentication was failed
 export interface UserFailed {
     type: typeof SET_AUTH_FAILED
 }
 
+//return failed school data
 export interface GetSchoolFailed {
     type: typeof SET_SCHOOL_INFO_FAILED
+}
+
+//return failed rating data
+export interface GetRatingFailed {
+    type: typeof SET_RATING_FAILED
 }
 
 export type UserInfo = {
@@ -75,6 +94,15 @@ export type Rating = {
     userId: UserInfo[]
 }
 
+export type Teacher = {
+    id: string,
+    firstname: string,
+    lastname: string,
+    image: string,
+    position: string,
+    workExperience: string,
+}
+
 export interface AuthState {
     pending: boolean;
     user: [];
@@ -88,4 +116,9 @@ export interface SchoolState {
     error: string | null;
 }
 
-export type Types = UserLoading | UserLogout | UserTokenRefresh | UserSuccessSignUp | UserSuccessSignIn | UserFailed | GetSchoolFailed | GetSchoolSuccessful;
+export interface RatingState {
+    rating: [];
+    error: string | null;
+}
+
+export type Types = UserLoading | UserLogout | UserTokenRefresh | UserSuccessSignUp | UserSuccessSignIn | UserFailed | GetSchoolFailed | GetSchoolSuccessful | GetRatingFailed | GetRatingSuccessful;

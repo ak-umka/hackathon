@@ -97,5 +97,3 @@ export const refresh = () => async (dispatch: Dispatch<Types>) => {
         })
     }
 }
-
-
