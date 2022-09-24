@@ -1,5 +1,4 @@
-import Home from "./Home"
+import Home from "./Home";
+import School from "./School";
 
-export {
-    Home
-}
+export { Home, School };
