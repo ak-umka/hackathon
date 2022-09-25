@@ -13,7 +13,7 @@ type Library = {
     id: string,
 }
 
-export const createLibrary = (options: any) => async (dispatch: Dispatch<Types>) => {
+export const createLibrary = (options: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -30,7 +30,7 @@ export const createLibrary = (options: any) => async (dispatch: Dispatch<Types>)
     }
 }
 
-export const getLibraries = () => async (dispatch: Dispatch<Types>) => {
+export const getLibraries = () => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -47,7 +47,7 @@ export const getLibraries = () => async (dispatch: Dispatch<Types>) => {
     }
 }
 
-export const deleteLibrary = (id: any) => async (dispatch: Dispatch<Types>) => {
+export const deleteLibrary = (id: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING

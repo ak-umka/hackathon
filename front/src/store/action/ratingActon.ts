@@ -8,7 +8,7 @@ type RatingInfo = {
     rating: Rating[]
 }
 
-export const getRating = (id: any, ratingId: any) => async (dispatch: Dispatch<Types>) => {
+export const getRating = (id: any, ratingId: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -25,7 +25,7 @@ export const getRating = (id: any, ratingId: any) => async (dispatch: Dispatch<T
     }
 }
 
-export const createRating = (id: any, options: any) => async (dispatch: Dispatch<Types>) => {
+export const createRating = (id: any, options: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -42,7 +42,7 @@ export const createRating = (id: any, options: any) => async (dispatch: Dispatch
     }
 }
 
-export const deleteRating = (id: any, ratingId: any) => async (dispatch: Dispatch<Types>) => {
+export const deleteRating = (id: any, ratingId: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING

@@ -7,7 +7,7 @@ type GroupInfo = {
   group: Group[];
 };
 
-export const createGroup = (id: any, options: any) => async (dispatch: Dispatch<Types>) => {
+export const createGroup = (id: any, options: any) => async (dispatch: Dispatch<any>) => {
   try {
     const res = await axiosInstance.post<GroupInfo>(`http://localhost:3000/api/v0/getSchool/${id}/createGroups`, options);
     dispatch({
@@ -21,7 +21,7 @@ export const createGroup = (id: any, options: any) => async (dispatch: Dispatch<
   }
 };
 
-export const deleteGroup = (id: any, groupId: any) => async (dispatch: Dispatch<Types>) => {
+export const deleteGroup = (id: any, groupId: any) => async (dispatch: Dispatch<any>) => {
   try {
     const res = await axiosInstance.delete<GroupInfo>(`http://localhost:3000/api/v0/getSchool/${id}/deleteGroups/${groupId}`);
     dispatch({

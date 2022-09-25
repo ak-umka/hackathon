@@ -15,7 +15,7 @@ type Logout = {
     acknowledged: boolean,
 }
 
-export const signup = (option: any) => async (dispatch: Dispatch<Types>) => {
+export const signup = (option: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING,
@@ -40,7 +40,7 @@ export const signup = (option: any) => async (dispatch: Dispatch<Types>) => {
     }
 }
 
-export const signin = (option: any) => async (dispatch: Dispatch<Types>) => {
+export const signin = (option: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING,
@@ -60,7 +60,7 @@ export const signin = (option: any) => async (dispatch: Dispatch<Types>) => {
     }
 }
 
-export const logout = () => async (dispatch: Dispatch<Types>) => {
+export const logout = () => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING,
@@ -80,7 +80,7 @@ export const logout = () => async (dispatch: Dispatch<Types>) => {
     }
 }
 
-export const refresh = () => async (dispatch: Dispatch<Types>) => {
+export const refresh = () => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING,

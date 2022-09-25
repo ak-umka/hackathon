@@ -16,7 +16,7 @@ type School = {
     rating: Rating[]
 }
 
-export const getSchools = () => async (dispatch: Dispatch<Types>) => {
+export const getSchools = () => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -33,7 +33,7 @@ export const getSchools = () => async (dispatch: Dispatch<Types>) => {
     }
 }
 
-export const getSchoolId = (id: any) => async (dispatch: Dispatch<Types>) => {
+export const getSchoolId = (id: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -50,7 +50,7 @@ export const getSchoolId = (id: any) => async (dispatch: Dispatch<Types>) => {
     }
 }
 
-export const createSchool = (options: any) => async (dispatch: Dispatch<Types>) => {
+export const createSchool = (options: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -68,7 +68,7 @@ export const createSchool = (options: any) => async (dispatch: Dispatch<Types>) 
 }
 
 
-export const updateSchoolId = (id: any, options: any) => async (dispatch: Dispatch<Types>) => {
+export const updateSchoolId = (id: any, options: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -85,7 +85,7 @@ export const updateSchoolId = (id: any, options: any) => async (dispatch: Dispat
     }
 }
 
-export const deleteSchoolId = (id: any, options: any) => async (dispatch: Dispatch<Types>) => {
+export const deleteSchoolId = (id: any, options: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -102,7 +102,7 @@ export const deleteSchoolId = (id: any, options: any) => async (dispatch: Dispat
     }
 }
 
-export const search = (key: any) => async (dispatch: Dispatch<Types>) => {
+export const search = (key: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -119,7 +119,7 @@ export const search = (key: any) => async (dispatch: Dispatch<Types>) => {
     }
 }
 
-export const createTeacher = (id: any, options: any) => async (dispatch: Dispatch<Types>) => {
+export const createTeacher = (id: any, options: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -136,7 +136,7 @@ export const createTeacher = (id: any, options: any) => async (dispatch: Dispatc
     }
 }
 
-export const deleteTeacher = (id: any, teacherId: any) => async (dispatch: Dispatch<Types>) => {
+export const deleteTeacher = (id: any, teacherId: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
