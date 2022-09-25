@@ -3,6 +3,8 @@ import { connect, useDispatch } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 import { signup } from "../../../store/action/authAction";
 import { useNavigate } from "react-router-dom";
+import React from "react";
+import { RootState } from "../../../store";
 
 function RegisterForm(props: any) {
   const navigate = useNavigate();
@@ -16,8 +18,13 @@ function RegisterForm(props: any) {
     console.log(data);
     event.preventDefault();
     props.signup(data);
-    navigate("/");
   };
+
+  React.useEffect(() => {
+    if (props.user.length !== 0) {
+      navigate("/");
+    }
+  }, [props.user]);
 
   return (
     <>
@@ -91,4 +98,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(RegisterForm);
+const mapStateToProps = (state: RootState) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
