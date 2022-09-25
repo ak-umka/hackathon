@@ -1,4 +1,4 @@
-import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT, SET_REFRESH, SET_SCHOOL_INFO_SUCCESSFUL, SET_SCHOOL_INFO_FAILED, SET_RATING_SUCCESSFUL, SET_RATING_FAILED, SET_LIBRARY_SUCCESSFUL, SET_LIBRARY_FAILED, SET_VACANCY_SUCCESSFUL, SET_VACANCY_FAILED } from "../actionTypes";
+import { SET_SIGN_UP_SUCCESSFUL, SET_AUTH_FAILED, SET_LOADING, SET_SIGN_IN_SUCCESSFUL, SET_LOGOUT, SET_REFRESH, SET_SCHOOL_INFO_SUCCESSFUL, SET_SCHOOL_INFO_FAILED, SET_RATING_SUCCESSFUL, SET_RATING_FAILED, SET_LIBRARY_SUCCESSFUL, SET_LIBRARY_FAILED, SET_VACANCY_SUCCESSFUL, SET_VACANCY_FAILED, SET_GROUP_SUCCESSFUL, SET_GROUP_FAILED } from "../actionTypes";
 
 //return signed up data
 export interface UserSuccessSignUp {
@@ -49,7 +49,7 @@ export interface GetSchoolSuccessful {
         shortHistory: string,
         teachers: Teacher[],
         direction: string,
-        countClasses: number,
+        group: Group[],
         rating: Rating[]
     }
 }
@@ -86,6 +86,13 @@ export interface GetVacancySuccessful {
     }
 }
 
+export interface GetGroupSuccessful {
+    type: typeof SET_GROUP_SUCCESSFUL,
+    payload: {
+        group: Group[]
+    }
+}
+
 //return loading
 export interface UserLoading {
     type: typeof SET_LOADING
@@ -116,6 +123,10 @@ export interface GetVacancyFailed {
     type: typeof SET_VACANCY_FAILED
 }
 
+export interface GetGroupFailed {
+    type: typeof SET_GROUP_FAILED
+}
+
 export type UserInfo = {
     email: string,
     id: string,
@@ -137,6 +148,15 @@ export type Teacher = {
     image: string,
     position: string,
     workExperience: string,
+}
+
+export type Group = {
+    id: string,
+    classNumber: number,
+    classDirection: string,
+    elementaryClass: boolean,
+    middleClass: boolean,
+    highClass: boolean,
 }
 
 export interface AuthState {
@@ -167,4 +187,9 @@ export interface VacancyState {
     error: string | null;
 }
 
-export type Types = UserLoading | UserLogout | UserTokenRefresh | UserSuccessSignUp | UserSuccessSignIn | UserFailed | GetSchoolFailed | GetSchoolSuccessful | GetRatingFailed | GetRatingSuccessful | GetLibrarySuccessful | GetLibraryFailed | GetVacancyFailed | GetVacancySuccessful;
+export interface GroupState {
+    group: [];
+    error: string | null;
+}
+
+export type Types = UserLoading | UserLogout | UserTokenRefresh | UserSuccessSignUp | UserSuccessSignIn | UserFailed | GetSchoolFailed | GetSchoolSuccessful | GetRatingFailed | GetRatingSuccessful | GetLibrarySuccessful | GetLibraryFailed | GetVacancyFailed | GetVacancySuccessful | GroupState | GetGroupSuccessful | GetGroupFailed;
