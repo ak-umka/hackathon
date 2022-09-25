@@ -13,7 +13,6 @@ import {
   Grid,
 } from '@mui/material'
 import { connect } from 'react-redux'
-// import { Types } from '../../../store/types'
 import { RootState } from '../../../store/reducers/rootReducer'
 import { logout } from '../../../store/action/authAction'
 import { Dispatch, bindActionCreators } from 'redux'
