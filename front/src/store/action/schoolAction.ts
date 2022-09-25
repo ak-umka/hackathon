@@ -1,7 +1,7 @@
 import { SET_SCHOOL_INFO_SUCCESSFUL, SET_SCHOOL_INFO_FAILED, SET_LOADING } from "../actionTypes";
 import axiosInstance from "../server";
 import { Dispatch } from "redux";
-import { Types, Rating, Teacher } from "../types";
+import { Types, Rating, Teacher, Group } from "../types";
 import axios from "axios"
 
 type School = {
@@ -12,11 +12,11 @@ type School = {
     shortHistory: string,
     teachers: Teacher[],
     direction: string,
-    countClasses: number,
+    groups: Group[],
     rating: Rating[]
 }
 
-export const getSchools = () => async (dispatch: Dispatch<Types>) => {
+export const getSchools = () => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -33,7 +33,7 @@ export const getSchools = () => async (dispatch: Dispatch<Types>) => {
     }
 }
 
-export const getSchoolId = (id: any) => async (dispatch: Dispatch<Types>) => {
+export const getSchoolId = (id: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -50,7 +50,7 @@ export const getSchoolId = (id: any) => async (dispatch: Dispatch<Types>) => {
     }
 }
 
-export const createSchool = (options: any) => async (dispatch: Dispatch<Types>) => {
+export const createSchool = (options: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -68,7 +68,7 @@ export const createSchool = (options: any) => async (dispatch: Dispatch<Types>) 
 }
 
 
-export const updateSchoolId = (id: any, options: any) => async (dispatch: Dispatch<Types>) => {
+export const updateSchoolId = (id: any, options: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -85,7 +85,7 @@ export const updateSchoolId = (id: any, options: any) => async (dispatch: Dispat
     }
 }
 
-export const deleteSchoolId = (id: any, options: any) => async (dispatch: Dispatch<Types>) => {
+export const deleteSchoolId = (id: any, options: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -102,7 +102,7 @@ export const deleteSchoolId = (id: any, options: any) => async (dispatch: Dispat
     }
 }
 
-export const search = (key: any) => async (dispatch: Dispatch<Types>) => {
+export const search = (key: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -119,12 +119,12 @@ export const search = (key: any) => async (dispatch: Dispatch<Types>) => {
     }
 }
 
-export const createTeacher = (id: any, options: any) => async (dispatch: Dispatch<Types>) => {
+export const createTeacher = (id: any, options: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
         })
-        const res = await axiosInstance.post<School>(`http://localhost:3000/api/v0/getSchool/${id}`, options)
+        const res = await axiosInstance.post<School>(`http://localhost:3000/api/v0/getSchool/${id}createTeacher`, options)
         dispatch({
             type: SET_SCHOOL_INFO_SUCCESSFUL,
             payload: res.data
@@ -136,7 +136,7 @@ export const createTeacher = (id: any, options: any) => async (dispatch: Dispatc
     }
 }
 
-export const deleteTeacher = (id: any, teacherId: any) => async (dispatch: Dispatch<Types>) => {
+export const deleteTeacher = (id: any, teacherId: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING

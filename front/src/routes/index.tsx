@@ -1,8 +1,9 @@
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home, Register, School, SignIn } from "../Pages";
 
+
 const MyRoutes = () => {
-  // const isAuthenticated = useSelector((state: RootState) => state.auth)
   return (
     <div>
       <Routes>
@@ -12,7 +13,7 @@ const MyRoutes = () => {
         <Route path="/signin" element={<SignIn />} />
       </Routes>
     </div>
-  );
-};
+  )
+}
 
-export default MyRoutes;
+export default MyRoutes

@@ -1,5 +1,7 @@
+
 import * as React from "react";
 import { Box, Tabs, Tab } from "@mui/material";
+
 import {
   ClassList,
   EmployeeList,
@@ -7,6 +9,7 @@ import {
   TabPanel,
   VacancyList,
   Review,
+
 } from "../../Molecules";
 
 const tabList = [
@@ -16,6 +19,7 @@ const tabList = [
   "Как постпуить ?",
   "вакансии школы",
 ];
+
 
 function a11yProps(index: number) {
   return {

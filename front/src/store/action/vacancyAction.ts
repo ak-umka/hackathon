@@ -12,7 +12,7 @@ type Vacancy = {
     id: string,
 }
 
-export const createVacancy = (id: any, options: any) => async (dispatch: Dispatch<Types>) => {
+export const createVacancy = (id: any, options: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING
@@ -29,7 +29,7 @@ export const createVacancy = (id: any, options: any) => async (dispatch: Dispatc
     }
 }
 
-export const deleteVacancy = (id: any, vacancyId: any) => async (dispatch: Dispatch<Types>) => {
+export const deleteVacancy = (id: any, vacancyId: any) => async (dispatch: Dispatch<any>) => {
     try {
         dispatch({
             type: SET_LOADING

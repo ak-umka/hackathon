@@ -1,3 +1,4 @@
+
 import Header from "./Header";
 import Hero from "./Hero";
 import Schools from "./Schools";
@@ -8,6 +9,7 @@ import SchoolInfo from "./SchoolInfo";
 import SchoolDetail from "./SchoolDetail";
 import RegisterForm from "./RegisterForm";
 import SignInForm from "./SignInForm";
+
 
 export {
   Header,
@@ -21,3 +23,4 @@ export {
   RegisterForm,
   SignInForm,
 };
+

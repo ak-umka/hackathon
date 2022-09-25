@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 import {
   AppBar,
   Container,
@@ -11,6 +11,7 @@ import {
   Tooltip,
   Avatar,
   Grid,
+
 } from "@mui/material";
 import { RootState } from "../../../store";
 import { connect } from "react-redux";
@@ -27,17 +28,18 @@ const authPages = [{ title: "Главное", url: "/" }];
 const settings = ["Профиль", "Выйти"];
 
 function Header(props: any) {
+
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+    null,
+  )
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
+    setAnchorElUser(event.currentTarget)
+  }
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    setAnchorElUser(null)
+  }
 
   function userLogout() {
     props.logout();
@@ -51,7 +53,7 @@ function Header(props: any) {
             <Grid
               item
               sx={{
-                display: "flex",
+                display: 'flex',
               }}
             >
               <Typography variant="h5" sx={{ alignSelf: "center" }}>
@@ -61,20 +63,22 @@ function Header(props: any) {
             <Grid
               item
               xs
+              container
               direction="row"
               justifyContent="flex-end"
               alignItems="center"
               sx={{
-                display: "flex",
+                display: 'flex',
               }}
             >
               <Box
                 sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: '8px',
                 }}
               >
+
                 {props.user.length !== 0 ? (
                   <>
                     {authPages.map((page, index) => (
@@ -138,14 +142,16 @@ function Header(props: any) {
                     ))}{" "}
                   </>
                 )}
+
               </Box>
             </Grid>
           </Grid>
         </Container>
       </AppBar>
     </>
-  );
+  )
 }
+
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(
@@ -161,3 +167,4 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
