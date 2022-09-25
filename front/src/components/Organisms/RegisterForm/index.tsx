@@ -1,5 +1,5 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 import { signup } from "../../../store/action/authAction";
 import { useNavigate } from "react-router-dom";
