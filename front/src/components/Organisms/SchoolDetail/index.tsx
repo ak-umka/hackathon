@@ -1,23 +1,21 @@
-
-import * as React from "react";
-import { Box, Tabs, Tab } from "@mui/material";
+import * as React from 'react'
+import { Box, Tabs, Tab } from '@mui/material'
 import {
   ClassList,
   EmployeeList,
   HowToProceed,
   TabPanel,
   VacancyList,
-  Review
-} from "../../Molecules";
+  Review,
+} from '../../Molecules'
 
 const tabList = [
-  "классы",
-  "Преподовательский состав",
-  "Отзывы",
-  "Как постпуить ?",
-  "вакансии школы",
-];
-
+  'классы',
+  'Преподовательский состав',
+  'Отзывы',
+  'Как постпуить ?',
+  'вакансии школы',
+]
 
 function a11yProps(index: number) {
   return {
@@ -53,10 +51,9 @@ function SchoolDetail() {
       <TabPanel value={value} index={1}>
         <EmployeeList />
       </TabPanel>
-      
+
       <TabPanel value={value} index={2}>
         <Review />
-
       </TabPanel>
       <TabPanel value={value} index={3}>
         <HowToProceed />
@@ -64,7 +61,7 @@ function SchoolDetail() {
 
       <TabPanel value={value} index={4}>
         <VacancyList />
-
+      </TabPanel>
     </>
   )
 }

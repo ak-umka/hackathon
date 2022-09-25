@@ -13,4 +13,6 @@ const rootReducer = combineReducers({
     vacancy: vacancyReducer
 })
 
+export type RootState = ReturnType<typeof rootReducer>;
+
 export default rootReducer;
