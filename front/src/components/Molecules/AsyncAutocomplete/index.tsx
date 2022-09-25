@@ -1,138 +1,146 @@
-import * as React from "react";
-import { Autocomplete, TextField, CircularProgress } from "@mui/material";
+import * as React from 'react'
+import {
+  Autocomplete,
+  TextField,
+  CircularProgress,
+  Grid,
+  Button,
+  Typography,
+} from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
+import { connect } from 'react-redux'
+import { RootState } from '../../../store/reducers/rootReducer'
+import { Dispatch, bindActionCreators } from 'redux'
+import { search, getSchools } from '../../../store/action/schoolAction'
 
-interface Film {
-  title: string;
-  year: number;
+const mapStateToProps = (state: RootState) => ({
+  school: state.school.school,
+})
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return bindActionCreators(
+    {
+      search,
+      getSchools,
+    },
+    dispatch,
+  )
 }
+
+interface School {
+  id: string
+  name: string
+  address: string
+  image: string
+  shortHistory: string
+  teachers: []
+  direction: string
+  groups: []
+  rating: []
+}
+
+type Props = ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
+    setTimeout(resolve, delay)
+  })
 }
 
-function AsyncAutocomplete() {
-  const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = React.useState<readonly Film[]>([]);
-  const [searchText, setSearchText] = React.useState<string>("");
-  const loading = open && options.length === 0;
+const AsyncAutocomplete: React.FC<Props> = (props) => {
+  const [open, setOpen] = React.useState(false)
+  const [options, setOptions] = React.useState<readonly School[]>([])
+  const [searchText, setSearchText] = React.useState<string>('')
+  const loading = open && options.length === 0
 
   React.useEffect(() => {
-    let active = true;
+    let active = true
 
     if (!loading) {
-      return undefined;
+      return undefined
     }
 
-    (async () => {
-      await sleep(1e3); // For demo purposes.
+    ;(async () => {
+      await sleep(1e3) // For demo purposes.
 
       if (active) {
-        setOptions([...topFilms]);
+        setOptions([...props?.school])
       }
-    })();
+    })()
 
     return () => {
-      active = false;
-    };
-  }, [loading]);
+      active = false
+    }
+  }, [loading])
+
+  React.useEffect(() => {
+    props?.getSchools()
+  }, [])
 
   React.useEffect(() => {
     if (!open) {
-      setOptions([]);
+      setOptions([])
     }
-  }, [open]);
+  }, [open])
 
   React.useEffect(() => {
-    !searchText.length && setOpen(false);
-  }, [searchText]);
+    !searchText.length && setOpen(false)
+  }, [searchText])
 
   return (
-    <Autocomplete
-      id="asynchronous-demo"
-      open={open}
-      onOpen={() => {
-        setOpen(true);
-      }}
-      onClose={() => {
-        setOpen(false);
-      }}
-      isOptionEqualToValue={(option, value) => option.title === value.title}
-      getOptionLabel={(option) => option.title}
-      options={options}
-      loading={loading}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          label="Введите название, номер школы"
-          color="primary"
-          onChange={(event) => setSearchText(event.target.value)}
-          InputProps={{
-            ...params.InputProps,
-            endAdornment: (
-              <React.Fragment>
-                {loading && !searchText.length ? (
-                  <CircularProgress color="inherit" size={20} />
-                ) : null}
-                {params.InputProps.endAdornment}
-              </React.Fragment>
-            ),
+    <Grid container spacing={2}>
+      <Grid item xs={10}>
+        <Autocomplete
+          id="asynchronous-demo"
+          open={open}
+          onOpen={() => {
+            setOpen(true)
           }}
+          onClose={() => {
+            setOpen(false)
+          }}
+          isOptionEqualToValue={(option, value) => option.name === value.name}
+          getOptionLabel={(option) => option.name}
+          options={options}
+          loading={loading}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Введите название, номер школы"
+              color="primary"
+              onChange={(event) => setSearchText(event.target.value)}
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <React.Fragment>
+                    {loading && !searchText.length ? (
+                      <CircularProgress color="inherit" size={20} />
+                    ) : null}
+                    {params.InputProps.endAdornment}
+                  </React.Fragment>
+                ),
+              }}
+            />
+          )}
         />
-      )}
-    />
-  );
+      </Grid>
+      <Grid item xs={2}>
+        <Button
+          startIcon={<SearchIcon />}
+          variant="contained"
+          sx={{
+            width: '100%',
+            height: '100%',
+            background: '#007DFF',
+          }}
+          onClick={() => props?.search(searchText)}
+        >
+          <Typography variant={'button'}>Поиск</Typography>
+        </Button>
+      </Grid>
+    </Grid>
+  )
 }
 
-const topFilms = [
-  { title: "The Shawshank Redemption", year: 1994 },
-  { title: "The Godfather", year: 1972 },
-  { title: "The Godfather: Part II", year: 1974 },
-  { title: "The Dark Knight", year: 2008 },
-  { title: "12 Angry Men", year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: "Pulp Fiction", year: 1994 },
-  {
-    title: "The Lord of the Rings: The Return of the King",
-    year: 2003,
-  },
-  { title: "The Good, the Bad and the Ugly", year: 1966 },
-  { title: "Fight Club", year: 1999 },
-  {
-    title: "The Lord of the Rings: The Fellowship of the Ring",
-    year: 2001,
-  },
-  {
-    title: "Star Wars: Episode V - The Empire Strikes Back",
-    year: 1980,
-  },
-  { title: "Forrest Gump", year: 1994 },
-  { title: "Inception", year: 2010 },
-  {
-    title: "The Lord of the Rings: The Two Towers",
-    year: 2002,
-  },
-  { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-  { title: "Goodfellas", year: 1990 },
-  { title: "The Matrix", year: 1999 },
-  { title: "Seven Samurai", year: 1954 },
-  {
-    title: "Star Wars: Episode IV - A New Hope",
-    year: 1977,
-  },
-  { title: "City of God", year: 2002 },
-  { title: "Se7en", year: 1995 },
-  { title: "The Silence of the Lambs", year: 1991 },
-  { title: "It's a Wonderful Life", year: 1946 },
-  { title: "Life Is Beautiful", year: 1997 },
-  { title: "The Usual Suspects", year: 1995 },
-  { title: "Léon: The Professional", year: 1994 },
-  { title: "Spirited Away", year: 2001 },
-  { title: "Saving Private Ryan", year: 1998 },
-  { title: "Once Upon a Time in the West", year: 1968 },
-  { title: "American History X", year: 1998 },
-  { title: "Interstellar", year: 2014 },
-];
-
-export default AsyncAutocomplete;
+export default connect(mapStateToProps, mapDispatchToProps)(AsyncAutocomplete)
