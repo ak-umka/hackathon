@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react";
 import {
   Autocomplete,
   TextField,
@@ -6,16 +6,16 @@ import {
   Grid,
   Button,
   Typography,
-} from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
-import { connect } from 'react-redux'
-import { RootState } from '../../../store/reducers/rootReducer'
-import { Dispatch, bindActionCreators } from 'redux'
-import { search, getSchools } from '../../../store/action/schoolAction'
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { connect } from "react-redux";
+import { RootState } from "../../../store/reducers/rootReducer";
+import { Dispatch, bindActionCreators } from "redux";
+import { search, getSchools } from "../../../store/action/schoolAction";
 
 const mapStateToProps = (state: RootState) => ({
   school: state.school.school,
-})
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(
@@ -23,70 +23,68 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       search,
       getSchools,
     },
-    dispatch,
-  )
-}
+    dispatch
+  );
+};
 
 interface School {
-  id: string
-  name: string
-  address: string
-  image: string
-  shortHistory: string
-  teachers: []
-  direction: string
-  groups: []
-  rating: []
+  id: string;
+  name: string;
+  address: string;
+  image: string;
+  shortHistory: string;
+  teachers: [];
+  direction: string;
+  groups: [];
+  rating: [];
 }
 
 type Props = ReturnType<typeof mapStateToProps> &
-  ReturnType<typeof mapDispatchToProps>
+  ReturnType<typeof mapDispatchToProps>;
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
-    setTimeout(resolve, delay)
-  })
+    setTimeout(resolve, delay);
+  });
 }
 
 const AsyncAutocomplete: React.FC<Props> = (props) => {
-  const [open, setOpen] = React.useState(false)
-  const [options, setOptions] = React.useState<readonly School[]>([])
-  const [searchText, setSearchText] = React.useState<string>('')
-  const loading = open && options.length === 0
+  const [open, setOpen] = React.useState(false);
+  const [options, setOptions] = React.useState<readonly School[]>([]);
+  const [searchText, setSearchText] = React.useState<string>("");
+  const loading = open && options.length === 0;
 
   React.useEffect(() => {
-    let active = true
+    let active = true;
 
-    if (!loading) {
-      return undefined
-    }
+    if (!loading) return undefined;
 
-    ;(async () => {
-      await sleep(1e3) // For demo purposes.
+    (async () => {
+      await sleep(1e3); // For demo purposes.
 
       if (active) {
-        setOptions([...props?.school])
+        setOptions([...props?.school]);
       }
-    })()
+    })();
 
     return () => {
-      active = false
-    }
-  }, [loading])
+      active = false;
+    };
+  }, [loading]);
 
   React.useEffect(() => {
-    props?.getSchools()
-  }, [])
+    props?.getSchools();
+  }, []);
 
   React.useEffect(() => {
     if (!open) {
-      setOptions([])
+      setOptions([]);
     }
-  }, [open])
+  }, [open]);
 
   React.useEffect(() => {
-    !searchText.length && setOpen(false)
-  }, [searchText])
+    !searchText.length && setOpen(false);
+  }, [searchText]);
 
   return (
     <Grid container spacing={2}>
@@ -95,10 +93,10 @@ const AsyncAutocomplete: React.FC<Props> = (props) => {
           id="asynchronous-demo"
           open={open}
           onOpen={() => {
-            setOpen(true)
+            setOpen(true);
           }}
           onClose={() => {
-            setOpen(false)
+            setOpen(false);
           }}
           isOptionEqualToValue={(option, value) => option.name === value.name}
           getOptionLabel={(option) => option.name}
@@ -130,17 +128,17 @@ const AsyncAutocomplete: React.FC<Props> = (props) => {
           startIcon={<SearchIcon />}
           variant="contained"
           sx={{
-            width: '100%',
-            height: '100%',
-            background: '#007DFF',
+            width: "100%",
+            height: "100%",
+            background: "#007DFF",
           }}
           onClick={() => props?.search(searchText)}
         >
-          <Typography variant={'button'}>Поиск</Typography>
+          <Typography variant={"button"}>Поиск</Typography>
         </Button>
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(AsyncAutocomplete)
+export default connect(mapStateToProps, mapDispatchToProps)(AsyncAutocomplete);

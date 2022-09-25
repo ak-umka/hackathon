@@ -17,7 +17,6 @@ class SchoolController {
         image: req.protocol + "://" + req.host + ":3000/" + req.file?.path,
         shortHistory: req.body.shortHistory,
         direction: req.body.direction,
-        countClasses: req.body.countClasses,
       });
       await newSchool.save();
       return res.status(201).json(newSchool);
@@ -70,7 +69,6 @@ class SchoolController {
       school.address = req.body.address;
       school.shortHistory = req.body.shortHistory;
       school.direction = req.body.direction;
-      school.countClasses = req.body.countClasses;
       await school.save();
       return res.json(school);
     } catch (error) {
