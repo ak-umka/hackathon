@@ -15,6 +15,8 @@ interface Props {
   name: string;
   address: string;
   image: string;
+  handleClick: any;
+  id: any;
 }
 
 function SchoolCard(props: Props) {
@@ -28,6 +30,7 @@ function SchoolCard(props: Props) {
           flexDirection: "column",
           height: "100%",
         }}
+        onClick={() => props.handleClick(props.id)}
       >
         <CardMedia
           component="img"

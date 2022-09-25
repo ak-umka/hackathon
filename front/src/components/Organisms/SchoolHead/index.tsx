@@ -28,12 +28,16 @@ type BoxProps = {
 
 function SchoolHead(props: any) {
   let { id } = useParams();
-
   const school = props.school;
+
   React.useEffect(() => {
     props.getSchoolId(id);
     console.log(id);
   }, []);
+
+  React.useEffect(() => {
+    console.log(props.school);
+  }, [props.school]);
 
   return (
     <>
