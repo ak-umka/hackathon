@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 import {
   AppBar,
   Container,
@@ -11,23 +11,41 @@ import {
   Tooltip,
   Avatar,
   Grid,
-} from "@mui/material";
+} from '@mui/material'
+import { connect } from 'react-redux'
+// import { Types } from '../../../store/types'
+import { RootState } from '../../../store/reducers/rootReducer'
+import { logout } from '../../../store/action/authAction'
+import { Dispatch, bindActionCreators } from 'redux'
 
-const pages = ["Главное"];
-const settings = ["Профиль", "Изменить", "Выйти"];
+const mapStateToProps = (state: RootState) => ({
+  loggedIn: state.auth.loggedIn,
+})
 
-function Header() {
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return bindActionCreators(
+    {
+      logout,
+    },
+    dispatch,
+  )
+}
+type Props = ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>
+const pages = ['Главное']
+
+const Header: React.FC<Props> = (props) => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+    null,
+  )
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
+    setAnchorElUser(event.currentTarget)
+  }
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    setAnchorElUser(null)
+  }
 
   return (
     <>
@@ -37,41 +55,42 @@ function Header() {
             <Grid
               item
               sx={{
-                display: "flex",
+                display: 'flex',
               }}
             >
-              <Typography variant="h5" sx={{ alignSelf: "center" }}>
+              <Typography variant="h5" sx={{ alignSelf: 'center' }}>
                 SKCAR
               </Typography>
             </Grid>
             <Grid
               item
               xs
+              container
               direction="row"
               justifyContent="flex-end"
               alignItems="center"
               sx={{
-                display: "flex",
+                display: 'flex',
               }}
             >
               <Box
                 sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: '8px',
                 }}
               >
                 {pages.map((page) => (
                   <Button
                     key={page}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
                   >
                     {page}
                   </Button>
                 ))}
                 <Box
                   sx={{
-                    alignSelf: "center",
+                    alignSelf: 'center',
                   }}
                 >
                   <Tooltip title="Open settings">
@@ -83,26 +102,34 @@ function Header() {
                     </IconButton>
                   </Tooltip>
                   <Menu
-                    sx={{ mt: "45px" }}
+                    sx={{ mt: '45px' }}
                     id="menu-appbar"
                     anchorEl={anchorElUser}
                     anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
+                      vertical: 'top',
+                      horizontal: 'right',
                     }}
                     keepMounted
                     transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
+                      vertical: 'top',
+                      horizontal: 'right',
                     }}
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                   >
-                    {settings.map((setting) => (
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">{setting}</Typography>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">Профиль</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">Изменить</Typography>
+                    </MenuItem>
+                    {props?.loggedIn ? (
+                      <MenuItem onClick={() => props?.logout()}>
+                        <Typography textAlign="center">Выйти</Typography>
                       </MenuItem>
-                    ))}
+                    ) : (
+                      <></>
+                    )}
                   </Menu>
                 </Box>
               </Box>
@@ -111,7 +138,7 @@ function Header() {
         </Container>
       </AppBar>
     </>
-  );
+  )
 }
 
-export default Header;
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
