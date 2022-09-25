@@ -19,6 +19,7 @@ import { bindActionCreators, Dispatch } from "redux";
 import { logout } from "../../../store/action/authAction";
 import { Link } from "react-router-dom";
 
+
 const pages = [
   { title: "Главное", url: "/" },
   { title: "Вход", url: "/signin" },

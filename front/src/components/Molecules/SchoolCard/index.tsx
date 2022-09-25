@@ -10,7 +10,14 @@ import {
 import { grey } from "@mui/material/colors";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 
-function SchoolCard() {
+interface Props {
+  ratingValue: number;
+  name: string;
+  address: string;
+  image: string;
+}
+
+function SchoolCard(props: Props) {
   const [ratingValue, setRatingValue] = React.useState<number | null>(2);
 
   return (
@@ -19,14 +26,17 @@ function SchoolCard() {
         sx={{
           display: "flex",
           flexDirection: "column",
+          height: "100%",
         }}
       >
         <CardMedia
+          component="img"
           sx={{
             minHeight: "220px",
             height: "220px",
             background: grey[300],
           }}
+          src={props.image}
         ></CardMedia>
         <CardContent sx={{}}>
           <Grid container sx={{ display: "flex", flexDirection: "column" }}>
@@ -38,7 +48,7 @@ function SchoolCard() {
                   marginBottom: "8px",
                 }}
               >
-                Школа-лицей N°101
+                {props.name}
               </Typography>
               <Typography
                 variant="subtitle1"
@@ -53,11 +63,11 @@ function SchoolCard() {
                     fill: "#2979ff",
                   }}
                 />
-                Adress
+                {props.address}
               </Typography>
             </Grid>
             <Grid item>
-              <Rating name="read-only" value={ratingValue} readOnly />
+              <Rating name="read-only" value={props.ratingValue} readOnly />
             </Grid>
           </Grid>
         </CardContent>
