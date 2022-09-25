@@ -1,6 +1,40 @@
+import React from "react";
 import { Grid, Paper, Box, Typography, Rating } from "@mui/material";
+import { connect } from "react-redux";
+import { RootState } from "../../../store/reducers/rootReducer";
+import { getSchoolId } from "../../../store/action/schoolAction";
+import { Dispatch, bindActionCreators } from "redux";
+import { useParams } from "react-router-dom";
 
-function SchoolHead() {
+const mapStateToProps = (state: RootState) => ({
+  school: state.school.school,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return bindActionCreators(
+    {
+      getSchoolId,
+    },
+    dispatch
+  );
+};
+
+type Props = ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>;
+
+type BoxProps = {
+  name: string;
+};
+
+function SchoolHead(props: any) {
+  let { id } = useParams();
+
+  const school = props.school;
+  React.useEffect(() => {
+    props.getSchoolId(id);
+    console.log(id);
+  }, []);
+
   return (
     <>
       <Grid
@@ -36,7 +70,7 @@ function SchoolHead() {
                 marginBottom: "16px",
               }}
             >
-              Школа-лицей N°101, физ - мат навправление
+              {props.school.name}
             </Typography>
             <Box
               sx={{
@@ -54,4 +88,4 @@ function SchoolHead() {
   );
 }
 
-export default SchoolHead;
+export default connect(mapStateToProps, mapDispatchToProps)(SchoolHead);
