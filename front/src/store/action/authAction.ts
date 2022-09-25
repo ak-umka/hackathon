@@ -20,6 +20,7 @@ export const signup = (option: any) => async (dispatch: Dispatch<Types>) => {
         dispatch({
             type: SET_LOADING,
         })
+        console.log(option,"option")
         const res = await axios.post<User>("http://localhost:3000/api/v0/signup", option);
         saveTokenInLocalStorage(res.data)
         localStorage.setItem("token", res.data.accessToken)

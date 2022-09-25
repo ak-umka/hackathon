@@ -3,6 +3,7 @@ import MyRoutes from "./routes";
 import { useDispatch } from "react-redux";
 import { checkAutoLogin } from "./store/services";
 import { Footer, Header } from "./components/Organisms";
+import { BrowserRouter as Router } from "react-router-dom";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -11,9 +12,11 @@ export default function App() {
   });
   return (
     <div>
-      <Header />
-      <MyRoutes />
-      <Footer />
+      <Router>
+        <Header />
+        <MyRoutes />
+        <Footer />
+      </Router>
     </div>
   );
 }

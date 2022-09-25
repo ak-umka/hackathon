@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, School } from "../Pages";
+import { Home, Register, School, SignIn } from "../Pages";
 
 const MyRoutes = () => {
   // const isAuthenticated = useSelector((state: RootState) => state.auth)
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/school" element={<School />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/school" element={<School />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/signin" element={<SignIn />} />
+      </Routes>
     </div>
   );
 };

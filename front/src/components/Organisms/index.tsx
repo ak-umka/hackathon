@@ -6,6 +6,8 @@ import Filter from "./Filter";
 import SchoolHead from "./SchoolHead";
 import SchoolInfo from "./SchoolInfo";
 import SchoolDetail from "./SchoolDetail";
+import RegisterForm from "./RegisterForm";
+import SignInForm from "./SignInForm";
 
 export {
   Header,
@@ -16,4 +18,6 @@ export {
   SchoolHead,
   SchoolInfo,
   SchoolDetail,
+  RegisterForm,
+  SignInForm,
 };
