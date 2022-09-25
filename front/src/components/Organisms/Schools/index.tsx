@@ -1,14 +1,14 @@
-import React from 'react'
-import { Grid, Typography } from '@mui/material'
-import { SchoolCard } from '../../Molecules'
-import { connect } from 'react-redux'
-import { getSchools, search } from '../../../store/action/schoolAction'
-import { bindActionCreators, Dispatch } from 'redux'
-import { RootState } from '../../../store/reducers/rootReducer'
+import React from "react";
+import { Grid, Typography } from "@mui/material";
+import { SchoolCard } from "../../Molecules";
+import { connect } from "react-redux";
+import { getSchools, search } from "../../../store/action/schoolAction";
+import { bindActionCreators, Dispatch } from "redux";
+import { RootState } from "../../../store/reducers/rootReducer";
 
 const mapStateToProps = (state: RootState) => ({
   schools: state.school.school,
-})
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(
@@ -16,28 +16,35 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       getSchools,
       search,
     },
-    dispatch,
-  )
-}
+    dispatch
+  );
+};
 
 interface CardValues {
-  image: string
-  address: string
-  name: string
+  image: string;
+  address: string;
+  name: string;
   ratings: {
-    rating: number
-  }
+    rating: number;
+  };
 }
 
 type Props = ReturnType<typeof mapStateToProps> &
-  ReturnType<typeof mapDispatchToProps>
+  ReturnType<typeof mapDispatchToProps>;
 
-const Schools: React.FC<Props> = (props) => {
-  const initialValue = 0
+function Schools(props: any) {
+  const initialValue = 0;
+
+  const [schoolList, setSchoolList] = React.useState<any[]>([]);
 
   React.useEffect(() => {
-    props.getSchools()
-  }, [])
+    props.getSchools();
+  }, []);
+
+  React.useEffect(() => {
+    console.log(props.schools);
+    setSchoolList(props.schools);
+  }, [props.schools]);
 
   return (
     <>
@@ -46,7 +53,7 @@ const Schools: React.FC<Props> = (props) => {
           <Typography
             variant="h4"
             sx={{
-              marginBottom: '8px',
+              marginBottom: "8px",
             }}
           >
             👑 Топ - 6 школ области
@@ -55,14 +62,20 @@ const Schools: React.FC<Props> = (props) => {
             Рейтинг основан по результатам ЕНТ
           </Typography>
         </Grid>
-        <Grid item xs={4}>
-          <SchoolCard
-            ratingValue={10}
-            name="qwert"
-            address="qwertyu"
-            image="gdyui"
-          />
-        </Grid>
+
+        {schoolList?.length !== 0
+          ? schoolList.map((item, index) => (
+              <Grid key={index} item xs={4}>
+                <SchoolCard
+                  ratingValue={10}
+                  name={item?.name}
+                  address={item?.address}
+                  image={item?.image}
+                />
+              </Grid>
+            ))
+          : null}
+
         {/* <Grid item xs={4}>
           <SchoolCard />
         </Grid>
@@ -80,7 +93,7 @@ const Schools: React.FC<Props> = (props) => {
         </Grid> */}
       </Grid>
     </>
-  )
+  );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Schools)
+export default connect(mapStateToProps, mapDispatchToProps)(Schools);
