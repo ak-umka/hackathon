@@ -29,8 +29,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     dispatch,
   )
 }
+
 type Props = ReturnType<typeof mapStateToProps> &
   ReturnType<typeof mapDispatchToProps>
+
 const pages = ['Главное']
 
 const Header: React.FC<Props> = (props) => {
