@@ -49,7 +49,7 @@ export interface GetSchoolSuccessful {
         shortHistory: string,
         teachers: Teacher[],
         direction: string,
-        group: Group[],
+        groups: Group[],
         rating: Rating[]
     }
 }

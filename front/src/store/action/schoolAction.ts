@@ -1,7 +1,7 @@
 import { SET_SCHOOL_INFO_SUCCESSFUL, SET_SCHOOL_INFO_FAILED, SET_LOADING } from "../actionTypes";
 import axiosInstance from "../server";
 import { Dispatch } from "redux";
-import { Types, Rating, Teacher } from "../types";
+import { Types, Rating, Teacher, Group } from "../types";
 import axios from "axios"
 
 type School = {
@@ -12,7 +12,7 @@ type School = {
     shortHistory: string,
     teachers: Teacher[],
     direction: string,
-    countClasses: number,
+    groups: Group[],
     rating: Rating[]
 }
 
@@ -124,7 +124,7 @@ export const createTeacher = (id: any, options: any) => async (dispatch: Dispatc
         dispatch({
             type: SET_LOADING
         })
-        const res = await axiosInstance.post<School>(`http://localhost:3000/api/v0/getSchool/${id}`, options)
+        const res = await axiosInstance.post<School>(`http://localhost:3000/api/v0/getSchool/${id}createTeacher`, options)
         dispatch({
             type: SET_SCHOOL_INFO_SUCCESSFUL,
             payload: res.data
