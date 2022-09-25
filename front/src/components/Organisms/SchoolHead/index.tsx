@@ -19,25 +19,25 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   );
 };
 
-type Props = ReturnType<typeof mapStateToProps> &
-  ReturnType<typeof mapDispatchToProps>;
+// type Props = ReturnType<typeof mapStateToProps> &
+//   ReturnType<typeof mapDispatchToProps>;
 
-type BoxProps = {
-  name: string;
-};
+// type BoxProps = {
+//   name: string;
+// };
 
 function SchoolHead(props: any) {
-  let { id } = useParams();
-  const school = props.school;
+  // let { id } = useParams();
+  // const school = props.school;
 
-  React.useEffect(() => {
-    props.getSchoolId(id);
-    console.log(id);
-  }, []);
+  // React.useEffect(() => {
+  //   props.getSchoolId(id);
+  //   console.log(id);
+  // }, []);
 
-  React.useEffect(() => {
-    console.log(props.school);
-  }, [props.school]);
+  // React.useEffect(() => {
+  //   console.log(props.school);
+  // }, [props.school]);
 
   return (
     <>
@@ -74,7 +74,7 @@ function SchoolHead(props: any) {
                 marginBottom: "16px",
               }}
             >
-              {props.school.name}
+              {props.name}
             </Typography>
             <Box
               sx={{
@@ -83,7 +83,7 @@ function SchoolHead(props: any) {
               }}
             >
               <Typography marginRight={"8px"}>Рейтинг/56789</Typography>
-              <Rating name="read-only" value={2} readOnly />
+              <Rating name="read-only" value={props.rating} readOnly />
             </Box>
           </Paper>
         </Grid>

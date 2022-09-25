@@ -49,6 +49,7 @@ function Schools(props: any) {
   }, [props.schools]);
 
   const openSchoolById = (id: any) => {
+    console.log(id);
     navigate(`/school/${id}`);
   };
 
@@ -69,7 +70,7 @@ function Schools(props: any) {
           </Typography>
         </Grid>
 
-        {schoolList?.length !== 0
+        {schoolList?.length || 0
           ? schoolList.map((item, index) => (
               <Grid key={index} item xs={4}>
                 <SchoolCard
@@ -78,7 +79,7 @@ function Schools(props: any) {
                   address={item?.address}
                   image={item?.image}
                   handleClick={openSchoolById}
-                  id={item.id}
+                  id={item._id}
                 />
               </Grid>
             ))
