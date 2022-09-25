@@ -1,5 +1,7 @@
-import * as React from 'react'
-import { Box, Tabs, Tab } from '@mui/material'
+
+import * as React from "react";
+import { Box, Tabs, Tab } from "@mui/material";
+
 import {
   ClassList,
   EmployeeList,
@@ -7,33 +9,35 @@ import {
   TabPanel,
   VacancyList,
   Review,
-} from '../../Molecules'
+
+} from "../../Molecules";
 
 const tabList = [
-  'классы',
-  'Преподовательский состав',
-  'Отзывы',
-  'Как постпуить ?',
-  'вакансии школы',
-]
+  "классы",
+  "Преподовательский состав",
+  "Отзывы",
+  "Как постпуить ?",
+  "вакансии школы",
+];
+
 
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  }
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
 }
 
 function SchoolDetail() {
-  const [value, setValue] = React.useState(0)
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
   return (
     <>
       <Box
-        sx={{ borderBottom: 1, borderColor: 'divider', marginBottom: '48px' }}
+        sx={{ borderBottom: 1, borderColor: "divider", marginBottom: "48px" }}
       >
         <Tabs
           value={value}
@@ -51,19 +55,17 @@ function SchoolDetail() {
       <TabPanel value={value} index={1}>
         <EmployeeList />
       </TabPanel>
-
       <TabPanel value={value} index={2}>
         <Review />
       </TabPanel>
       <TabPanel value={value} index={3}>
         <HowToProceed />
       </TabPanel>
-
       <TabPanel value={value} index={4}>
         <VacancyList />
       </TabPanel>
     </>
-  )
+  );
 }
 
-export default SchoolDetail
+export default SchoolDetail;
