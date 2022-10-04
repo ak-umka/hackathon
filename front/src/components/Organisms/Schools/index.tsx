@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getSchools, search } from "../../../store/action/schoolAction";
 import { bindActionCreators, Dispatch } from "redux";
 import { RootState } from "../../../store/reducers/rootReducer";
+import { useNavigate } from "react-router-dom";
 
 const mapStateToProps = (state: RootState) => ({
   schools: state.school.school,
@@ -34,6 +35,7 @@ type Props = ReturnType<typeof mapStateToProps> &
 
 function Schools(props: any) {
   const initialValue = 0;
+  const navigate = useNavigate();
 
   const [schoolList, setSchoolList] = React.useState<any[]>([]);
 
@@ -45,6 +47,11 @@ function Schools(props: any) {
     console.log(props.schools);
     setSchoolList(props.schools);
   }, [props.schools]);
+
+  const openSchoolById = (id: any) => {
+    console.log(id);
+    navigate(`/school/${id}`);
+  };
 
   return (
     <>
@@ -63,7 +70,7 @@ function Schools(props: any) {
           </Typography>
         </Grid>
 
-        {schoolList?.length !== 0
+        {schoolList?.length || 0
           ? schoolList.map((item, index) => (
               <Grid key={index} item xs={4}>
                 <SchoolCard
@@ -71,6 +78,8 @@ function Schools(props: any) {
                   name={item?.name}
                   address={item?.address}
                   image={item?.image}
+                  handleClick={openSchoolById}
+                  id={item._id}
                 />
               </Grid>
             ))

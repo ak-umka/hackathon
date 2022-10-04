@@ -6,7 +6,7 @@ const schoolInfo = {
     "Обязательный этап ребенка на пути к взрослой жизни — это получение образования. От выбора места обучения зависит будущий образовательный путь ребенка. \n\n В школе-лицее № 101 детей встретят внимательные учителя, которые серьезно и терпеливо занимаются своим делом. \n\nГлавная задача школы-лицея — подготовка школьников для дальнейшего приобретения профильного высшего образования.",
 };
 
-function SchoolInfo() {
+function SchoolInfo(props: any) {
   return (
     <>
       <Paper
@@ -21,11 +21,13 @@ function SchoolInfo() {
         <Grid container spacing={4}>
           <Grid item xs={5}>
             <CardMedia
+              component="img"
               sx={{
                 background: "#bdbdbd",
                 height: "300px",
                 borderRadius: "8px",
               }}
+              image={props.image}
             />
           </Grid>
           <Grid item xs>
